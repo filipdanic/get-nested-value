@@ -31,13 +31,21 @@
  * @param {object} object
  * @returns {*}
  */
-const getNestedValue = (path, object) => {
+var getNestedValue = function (path, object) {
   if (!Array.isArray(path) && typeof path !== 'string') {
     throw Error('The package get-nested-value received a non-contract path. Please provide a string or an array!');
   }
-  return (Array.isArray(path) ? path : path.split('.'))
-    .reduce((prev, cur) =>
-      (prev && prev[cur] !== undefined ? prev[cur] : undefined), object);
+  var searchPath = path;
+  if (!Array.isArray(path)) {
+    searchPath = searchPath.split('.');
+  }
+  return searchPath
+    .reduce(function (prev, cur) {
+      if (prev && prev[cur] !== undefined) {
+        return prev[cur];
+      }
+      return undefined;
+    }, object);
 };
 
 module.exports = getNestedValue;
