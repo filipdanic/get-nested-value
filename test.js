@@ -56,7 +56,25 @@ test('throws when contract is not followed', (t) => {
   try {
     t.equal(getNestedValue({}, user), undefined);
   } catch (e) {
-    t.equal(e.message, 'The package get-nested-value received a non-contract path. Please provide a string or an array!')
+    t.equal(e.message, 'The package get-nested-value received a non-contract path. Please provide a string, number, or an array of those!')
   }
   t.end();
+});
+
+test('README example works', (t) => {
+    t.plan(1);
+    t.equal(
+        getNestedValue('a.b.0.c.d', { a: { b: [{ c: { d: 'hello!' } }] } }),
+        'hello!'
+    );
+    t.end();
+});
+
+test('works with arrays of arrays', (t) => {
+    t.plan(1);
+    t.equal(
+        getNestedValue([0, 1, 2, 'key'], [ [ [], [{}, {}, { key: 'hello!' }] ] ]),
+        'hello!'
+    );
+    t.end();
 });
