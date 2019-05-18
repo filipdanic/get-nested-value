@@ -1,6 +1,6 @@
 {
   "name": "get-nested-value",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Utility package to get deeply nested values from objects. Support arrays.",
   "main": "readme.js",
   "scripts": {
