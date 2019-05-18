@@ -19,7 +19,7 @@ yarn add get-nested-value
 ## Example
 
 ```javascript
-import getNestedValue from 'get-nestedValue';
+import getNestedValue from 'get-nested-value';
 
 getNestedValue('some.path.to.key', object);
 // or as an array of paths
